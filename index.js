@@ -84,7 +84,7 @@ svg.selectAll(".clock")
     .on("mousemove", moveAngleLine)
     .on("mouseout", hideAngleLine);
 
-d3.json("../data/japan.topojson").then((data) => {
+d3.json("./data/japan.topojson").then((data) => {
   var japan = topojson.feature(data, data.objects.japan);
   var projection = d3.geoMercator()
     .center([137, 34])
@@ -131,7 +131,7 @@ getGeoJson().then(data => {
 
 function onClickGraph() {
   console.log("graph loading started");
-  changeTitle("../image/clock_icon.svg", "東京駅からの所要時間")
+  changeTitle("./image/clock_icon.svg", "東京駅からの所要時間")
   graphButton.style.backgroundColor = "#377DAD"
   mapButton.style.backgroundColor = "#D9D9D9"
 
@@ -149,7 +149,7 @@ function onClickGraph() {
 
 function onClickMap() {
   console.log("map loading started");
-  changeTitle("../image/japan_icon.svg", "東京駅からどれくらい遠いか")
+  changeTitle("./image/japan_icon.svg", "東京駅からどれくらい遠いか")
   mapButton.style.backgroundColor = "#377DAD"
   graphButton.style.backgroundColor = "#D9D9D9"
 
@@ -181,7 +181,7 @@ function onClickNode(event, d) {
 
 async function getGeoJson() {
   var data;
-  await d3.json("../data/data.geojson").then(function (response) {
+  await d3.json("./data/data.geojson").then(function (response) {
       data = response;
   })
   return data;
@@ -246,7 +246,7 @@ function createTitle() {
   headingDiv.style.gap = "16px";
   const iconImage = document.createElement("img");
   iconImage.setAttribute("id", "heading-icon-image")
-  iconImage.setAttribute("src", "../image/clock_icon.svg");
+  iconImage.setAttribute("src", "./image/clock_icon.svg");
   const headingText = document.createElement("p");
   headingText.setAttribute("id", "heading-text")
   headingText.innerText = "東京駅からの所要時間";
@@ -315,7 +315,7 @@ function createInfoWindow(name, line, prefecture, area, fare, distance, minutes,
   closeButton.addEventListener("click", (event) => removeInfoWindow(event, id))
 
   const closeButtonImage = document.createElement("img");
-  closeButtonImage.src = "../image/close_button_icon.svg";
+  closeButtonImage.src = "./image/close_button_icon.svg";
   closeButtonImage.style.width = "18px";
   closeButtonImage.style.height = "18px";
 
@@ -338,7 +338,7 @@ function createInfoWindow(name, line, prefecture, area, fare, distance, minutes,
   trainWrapper.style.alignItems = "center";
   
   const trainIcon = document.createElement("img");
-  trainIcon.src = "../image/train_icon.svg";
+  trainIcon.src = "./image/train_icon.svg";
 
   const trainText = createInfoWindowText(line);
 
@@ -351,7 +351,7 @@ function createInfoWindow(name, line, prefecture, area, fare, distance, minutes,
   mapPinWrapper.style.alignItems = "center";
 
   const mapPinIcon = document.createElement("img");
-  mapPinIcon.src = "../image/map_pin_icon.svg";
+  mapPinIcon.src = "./image/map_pin_icon.svg";
 
   const cityText = createInfoWindowText(`${prefecture}${area}`);
 
@@ -467,7 +467,7 @@ function removeInfoWindow(event, id) {
 }
 
 function resetAll(defaultInputValue) {
-  changeTitle("../image/clock_icon.svg", "東京駅からの所要時間")
+  changeTitle("./image/clock_icon.svg", "東京駅からの所要時間")
   graphButton.style.backgroundColor = "#377DAD"
   mapButton.style.backgroundColor = "#D9D9D9"
   isMap = false;
