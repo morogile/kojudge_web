@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>D3 test</title>
+<script type="text/javascript" src="./d3.js"></script>
+<script defer type="module" src="./index.js"></script>
+<script type="text/javascript" src="../topojson.js"></script>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body class="background" id="background">
+    <div class="input-slider-wrapper">
+      <div class="control-wrapper">
+        <div class="button-container">
+          <button id="mapButton" class="mode-select-button mode-select-left-button">
+            <img class="mode-select-button-icon" src="../image/japan_icon_white.svg" />
+            <p class="mode-select-button-text">地図</p>
+          </button>
+          <button id="graphButton" class="mode-select-button mode-select-right-button">
+            <img class="mode-select-button-icon" src="../image/clock_icon_white.svg" />
+            <p class="mode-select-button-text">グラフ</p>
+          </button>
+        </div>
+        <div class="fare-slider-container">
+          <p class="fare-slider-text">東京駅からの運賃</p>
+          <p class="fare-slider-amount-text" id="fare-slider-amount-text"></p>
+          <label>
+            <input type="range" min="0" max="30000" step="100" id="fare-slider" class="input-range" value="10000" />
+          </label>
+        </div>
+      </div>
+      <div class="title" id="title">
+        <div class="legend-list">
+          <div class="legend">
+            <div class="passanger-legend-circle circle-2000"></div>
+            <p>乗降者数2,000人/日〜</p>
+          </div>
+          <div class="legend">
+            <div class="passanger-legend-circle circle-100"></div>
+            <p>乗降者数100人/日〜</p>
+          </div>
+          <div class="legend">
+            <div class="passanger-legend-circle circle-under-100"></div>
+            <p>乗降者数100人/日以下</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="my_dataviz" class="my_dataviz"></div>
+</body>
+</html>
