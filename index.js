@@ -589,33 +589,33 @@ function onFilterOver2000() {
   svg.selectAll(".node")
     .filter((d,i) => Number(d.properties.S12_033) < 2000)
     .classed("over-2000-station",true)
-    .attr("opacity", 0);
+    .style("display", "none");
 }
 function onFilterOver100() {
   svg.selectAll(".node")
     .filter((d,i) => Number(d.properties.S12_033) < 100 || Number(d.properties.S12_033) >= 2000)
     .classed("over-100-station",true)
-    .attr("opacity", 0);
+    .style("display", "none");
 }
 function onFilterUnder100() {
   svg.selectAll(".node")
     .filter((d,i) => Number(d.properties.S12_033) >= 100)
     .classed("under-100-station",true)
-    .attr("opacity", 0);
+    .style("display", "none");
 }
 
 function resetFilterOver2000() {
   svg.selectAll(".over-2000-station")
     .classed("over-2000-station",false)
-    .attr("opacity", 1);
+    .style("display", "block");
 }
 function resetFilterOver100() {
   svg.selectAll(".over-100-station")
     .classed("over-100-station",false)
-    .attr("opacity", 1);
+    .style("display", "block");
 }
 function resetFilterUnder100() {
   svg.selectAll(".under-100-station")
     .classed("under-100-station",false)
-    .attr("opacity", 1);
+    .style("display", "block");
 }
