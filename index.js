@@ -278,7 +278,8 @@ function changeFareAmountText(text) {
 }
 
 function createInfoWindow(name, line, prefecture, area, fare, distance, minutes, existDataOfPassangers, numOfPassangers, initialPlace) {
-  const id = `${name}-${prefecture}-${area}`;
+  const random_num = Math.ceil(Math.random() * 100);
+  const id = `${name}-${prefecture}-${area}-${random_num}`;
   let isSameNameStation = false;
   windowCount++;
 
