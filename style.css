@@ -64,6 +64,7 @@ p {
   display: flex;
   gap: 12px;
   align-items: center;
+  cursor: pointer;
 }
 .passanger-legend-circle {
   border-radius: 50%;
