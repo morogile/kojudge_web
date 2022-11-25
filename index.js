@@ -27,6 +27,7 @@ legendOver2000.addEventListener("click", onClickLegendOver2000);
 legendOver100.addEventListener("click", onClickLegendOver100);
 legendUnder100.addEventListener("click", onClickLegendUnder100);
 
+
 createTitle()
 
 var svg = d3.select("#my_dataviz").append("svg")
@@ -297,7 +298,7 @@ function createInfoWindow(name, line, prefecture, area, fare, distance, minutes,
   stationWrapper.style.justifyContent = "space-between";
   stationWrapper.style.padding = "12px";
   stationWrapper.style.borderBottom = "1px solid #BEBEBE";
-  /* stationWrapper.addEventListener("mousedown", event =>  onMouseDown(event,id)); */
+  stationWrapper.style.cursor = "move"
   
 
   const stationNameWrapper = document.createElement("div");
@@ -429,6 +430,39 @@ function createInfoWindow(name, line, prefecture, area, fare, distance, minutes,
 
   document.getElementById("background").append(windowWrapperDiv);
 
+
+  stationWrapper.onmousedown = function (event) {
+    //  画像上のクリックした場所を取得
+    let adjustX =
+      event.clientX -
+      windowWrapperDiv.getBoundingClientRect().left;
+    let adjustY =
+      event.clientY -
+      windowWrapperDiv.getBoundingClientRect().top;
+    
+    // この位置まで移動
+    function moveAt(x, y) {
+      windowWrapperDiv.style.left = x - adjustX + "px";
+      windowWrapperDiv.style.top = y - adjustY + "px";
+    }
+    
+    // マウスムーブしているときの処理
+    function onMouseMove(e) {
+      moveAt(e.x, e.y);
+    }
+
+    document.addEventListener("mousemove", onMouseMove);
+
+    // マウスボタンを離した時の処理
+    stationWrapper.onmouseup = function () {
+      document.removeEventListener("mousemove", onMouseMove);
+      windowWrapperDiv.onmouseup = null;
+    };
+  };
+
+  stationWrapper.ondragstart = function () {
+    return false;
+  }
 }
 
 function createInfoGroup() {
@@ -491,13 +525,10 @@ function resetAll(defaultInputValue) {
 
 //マウス移動にウィンドウが追従するようにしたかった
 function onMouseDown(event, id) {
-  const stationWrapper = document.getElementById(`station-wrapper-${id}`);
-  const windowWrapperDiv = document.getElementById(id);
 
-  let adjustX = event.clientX - stationWrapper.getBoundingClientRect().left + windowWrapperDiv.getBoundingClientRect().left;
-  let adjustY = event.clientY - stationWrapper.getBoundingClientRect().top + windowWrapperDiv.getBoundingClientRect().top;
-  stationWrapper.addEventListener("mousemove", onMouseMoveEvent);
-  stationWrapper.removeEventListener("mouseup", onMouseMoveEvent);
+  let adjustX = event.clientX - windowWrapper.getBoundingClientRect().left + windowWrapperDiv.getBoundingClientRect().left;
+  let adjustY = event.clientY - windowWrapper.getBoundingClientRect().top + windowWrapperDiv.getBoundingClientRect().top;
+  
 
   function onMouseMoveEvent(event) {
     onMouseMove(event,id, adjustX, adjustY)
